@@ -1,0 +1,58 @@
+{% extends 'layout/app-layout.html' %}
+{% block 'content' %}
+{% load static %}
+<style>
+    h1 {
+        font-size: 45px;
+        text-align: center;
+        font-weight: 120;
+        font-family: 'Times New Roman', Times, serif;
+        color: #2a2443;
+    }
+</style>
+<h1>Hello! Let's Edit this Video.</h1>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="login-form">
+                <form method="post" action="{% url 'editvideo' product.id %}" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="id_title" style="color: azure; font-size: 20px;">Title:</label>
+                        <input type="text" name="title" value="{{ product.title }}" maxlength="150" required class="form-control" id="id_title">
+                    </div>
+                    <div class="form-group">
+                        <label for="id_description" style="color: azure; font-size: 20px;">Description:</label>
+                        <textarea name="description" cols="40" rows="1" maxlength="1200" required id="id_description" class="form-control">{{ product.description }}</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="id_thumbnail">Thumbnail:</label>
+                        <input type="file" name="thumbnail" accept="image/*" id="id_thumbnail">
+                        {% if product.thumbnail %}
+                        <div>
+                            <img src="{{ product.thumbnail.url }}" alt="{{ product.title }} thumbnail" width="500" height="250">
+                            <p>{{ product.thumbnail.name }}</p>
+                        </div>
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        <label for="video_file" style="color: azure; font-size: 20px; margin-bottom: -10;">Video file:</label>
+                        <input type="file" name="video_file" accept="video/*" id="video_file">
+                        {% if product.video_file %}
+                        <div>
+                            <video width="520" height="440" controls>
+                                <source src="{{ product.video_file.url }}" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <p>{{ product.video_file.name }}</p>
+                        </div>
+                        {% endif %}
+                    </div>
+                    <button class="btn btn-success form-control" type="submit"  style="color: rgb(3, 7, 11);">Update</button>
+                    <br><br>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends 'layout/app-layout.html' %}
+{% block 'content' %}
+<style>
+    h1 {
+        font-size: 45px;
+        text-align: center;
+        font-weight: 120;
+        font-family: 'Times New Roman', Times, serif;
+        color: #2a2443;
+    }
+</style>
+
+<h1>Plans</h1>
+<div class="container">
+    <div class="row">
+        {% for plan in plans %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ plan.title }}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted"><strong>{{ plan.duration }} Days</strong></h6>
+                    <p class="card-text">{{ plan.description }}</p>
+                    <p class="card-text"><strong>Price:</strong> {{ plan.price }}</p>
+                    <a href="{% url 'planedit' plan.id %}" class="btn btn-success">EDIT</a>
+                    <button data-toggle="modal" data-target="#myModal{{ plan.id }}" class="btn btn-danger delete-btn">Delete</button>
+                </div>
+            </div>
+            <div class="modal fade" id="myModal{{ plan.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <form id="deleteForm{{ plan.id }}" method="post" action="{% url 'deleteplan' plan.id %}">
+                            {% csrf_token %}
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="myModalLabel">Confirm Delete</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                Are you sure you want to delete "{{ plan.title }}"?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

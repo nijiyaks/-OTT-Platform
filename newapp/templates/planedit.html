@@ -1,0 +1,51 @@
+
+
+{% extends 'layout/app-layout.html' %}
+{% block 'content' %}
+{%load static %}
+<style>
+    h1{
+    font-size: 45px;
+    text-align: center;
+    font-weight: 120;
+   
+    font-family:'Times New Roman', Times, serif;
+     color: #2a2443;
+    }
+</style>
+<br>
+<a href="{% url 'planlists' %}" class="btn btn-dark">back</a>
+
+<h1>
+    Hello! Lets,edit plans
+</h1>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="login-form">
+               
+                <form method="post" action="">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="id_title" style="color: azure;font-size:20px ;">Title:</label>
+                    <input type="text" name="title" class="form-control" value="{{product.title}}" maxlength="150" required="" id="id_title">
+                    </div>
+                   <div class="form-group">
+                    <label for="id_duration" style="color: azure;font-size:20px ;">Duration:</label>
+                    <input type="text" name="duration" class="form-control" value="{{product.duration}}" maxlength="150" required="" id="id_duration">
+                </div>                    
+                <div class="form-group">
+                    <label for="id_description" style="color: azure;font-size:20px ;">Description:</label>
+                <textarea name="description" cols="40" rows="1" class="form-control" maxlength="1200" required="" id="id_description">{{product.description}}</textarea>
+                    </div>
+                <div class="form-group">
+                    <label for="id_price">Price:</label>
+                    <input type="number" name="price" value="{{product.price}}"  required="" id="id_price">
+                    </div>
+                                                           
+                <button type = "submit" class = "btn  form-control btn-primary" value="update" style="color: rgb(3, 7, 11);" >Submit</button>    </form>
+
+
+
+
+{%endblock%}

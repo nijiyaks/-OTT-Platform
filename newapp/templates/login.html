@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <title>Login</title>
+    {% load static %}
+
+    <style>
+   body {
+	  background-image: url("{% static 'img1.jpg' %}");
+	  /* Adjust background properties as needed */
+	  
+	  background-repeat: no-repeat;
+	  background-size: cover; /* or 'contain' based on your preference */
+	  /* Optionally, you can add more CSS properties such as background-position */
+	  background-position: center;
+            background-size: cover;
+            padding-top: 45px;
+	  }
+	  .login-form {
+            background: #5e9fba7a;
+            margin-top: 50px;
+            margin-bottom: 100px;
+            padding: 100px;
+            border-radius: 50px;
+            box-shadow: 10px 10px 5px 2px rgb(0, 42, 84);
+        }
+  h1 {
+  font-size: 70px;
+  text-align: center;
+  font-weight: 520;
+  color: #062c38;
+  }
+    </style>
+</head>
+<body>
+    <h1>LOGIN</h1>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="login-form">
+                   
+                    <form method="post" action="{% url 'login_view' %}">
+                    {% csrf_token %}
+                    <div class="form-group">
+
+        <label for="username" style="color: azure; font-size:20px ;">Username:</label>
+        <input type="text" id="username" name="username" class="form-control" placeholder="enter the username" required></div>
+        <div class="form-group">
+
+        <label for="password" style="color: azure;font-size:20px ;">Password:</label>
+        <input type="password" id="password" name="password" class="form-control" name="password" placeholder="enter the password" required><br>
+        <button type="submit" class = "btn  form-control btn-primary" style="color: rgb(3, 7, 11);">Login</button>
+    </form>
+    {% if error_message %}
+        <p style="color: red;">{{ error_message }}</p>
+    {% endif %}
+</body>
+</html>

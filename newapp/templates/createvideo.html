@@ -1,0 +1,62 @@
+{% extends 'layout/app-layout.html' %}
+{% block 'content' %}
+{% load static %}
+
+<style>
+    h1 {
+        font-size: 45px;
+        text-align: center;
+        font-weight: 120;
+        font-family: 'Times New Roman', Times, serif;
+        color: #2a2443;
+    }
+    .form-group {
+        margin-bottom: 15px;
+    }
+    .form-control {
+        padding: 10px;
+        border-radius: 5px;
+    }
+    .btn-primary {
+        background-color: #007bff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+</style>
+
+<h1>Hello! Let's create videos.</h1>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="login-form">
+                <form method="post" action="" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="id_title" style="color: azure; font-size: 20px;">Title:</label>
+                        <input type="text" name="title" class="form-control" maxlength="150" required placeholder="Enter the title" id="id_title">
+                    </div>
+                    <div class="form-group">
+                        <label for="id_description" style="color: azure; font-size: 20px;">Description:</label>
+                        <textarea name="description" cols="40" rows="1" class="form-control" placeholder="Enter the description" maxlength="1200" required id="id_description"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="id_thumbnail" style="color: azure; font-size: 20px;">Thumbnail:</label>
+                        <input type="file" name="thumbnail" accept="image/*" required id="id_thumbnail">
+                    </div>
+                    <div class="form-group">
+                        <label for="id_video_file" style="color: azure; font-size: 20px;">Video file:</label>
+                        <input type="file" name="video_file" required id="id_video_file">
+                    </div>
+                    <button type="submit" class="btn btn-primary form-control" style="color: white;">Submit</button>
+                    {% if error_message %}
+                        <p>{{ error_message }}</p>
+                    {% endif %}
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

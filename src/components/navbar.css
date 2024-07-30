@@ -1,0 +1,44 @@
+.navbar {
+    background: rgba(87, 155, 189, 0.9);
+    box-shadow: 0 16px 8px rgba(92, 180, 207, 0.2);
+    padding: 0px 20px;
+}
+
+.navbar-brand h4 {
+    color: #382F49;
+    font-size: 24px;
+    margin: 0;
+}
+
+.navbar-toggler {
+    border: none;
+    background-color: transparent;
+}
+
+
+
+.navbar-collapse {
+    justify-content: flex-end;
+}
+
+.navbar-nav .nav-item .nav-link {
+    color: #382F49;
+    font-size: 18px;
+    margin-left: 20px;
+}
+
+.navbar-nav .nav-item .nav-link:hover {
+    color: #32ccdd;
+}
+
+.navbar-nav .nav-item .nav-link.active {
+    font-weight: bold;
+    color: #1a5dba;
+}
+
+.navbar-nav .nav-item .nav-link span {
+    cursor: pointer;
+    color: rgb(127, 183, 209);
+}
+
+
